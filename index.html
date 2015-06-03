@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>NBA Bracket Challenge</title>
+        <link rel="stylesheet" type="text/css" href="stylesheet.css">
+        <script src="helperfunctions.js"></script>
+        <script src="createbrackets.js"></script>
+        <script src="statistics.js"></script>
+        <script src="main.js"></script>
+    </head>
+
+    <body>
+        <h1 class="logo">
+            <img class="logo" id="logo" src="banner.png">
+        </h1>
+        
+        <!-- NOTE TO SELF: EXTRACT ALL NAVIGATION TO DIFFERENT AREAS OF THE SITE FROM
+             THE JAVASCRIPT LOGIC AND PUT IT IN THIS DIV -->
+        <div id="navigation" class="maincontainer">
+            <input type="button" value="Bracket Creation Closed" onclick="#" disabled="true">
+        </div>
+    
+        <form id="teams">
+            <!--Most data inline or generated inline from javascript and all appear
+                in invisible forms. MySQL and PHP only used once to write to a text 
+                file due to difficulty (impossibility?) of file writing with javascript -->
+            
+            <!-- EAST TOP 8 -->
+            <input type="hidden" id="team1" data-mascot="Hawks" data-city="Atlanta" 
+                   data-wins="60" data-losses="22" data-confwins="38" data-conflosses="14">
+            <input type="hidden" id="team2" data-mascot="Cavaliers" data-city="Cleveland" 
+                   data-wins="53" data-losses="29" data-confwins="35" data-conflosses="17">
+            <input type="hidden" id="team3" data-mascot="Bulls" data-city="Chicago" 
+                   data-wins="50" data-losses="32" data-confwins="33" data-conflosses="19">
+            <input type="hidden" id="team4" data-mascot="Raptors" data-city="Toronto" 
+                   data-wins="49" data-losses="33" data-confwins="33" data-conflosses="19">
+            <input type="hidden" id="team5" data-mascot="Wizards" data-city="Washington" 
+                   data-wins="46" data-losses="36" data-confwins="30" data-conflosses="22">
+            <input type="hidden" id="team6" data-mascot="Bucks" data-city="Milwaukee" 
+                   data-wins="41" data-losses="41" data-confwins="30" data-conflosses="22">
+            <input type="hidden" id="team7" data-mascot="Celtics" data-city="Boston" 
+                   data-wins="40" data-losses="42" data-confwins="28" data-conflosses="24">
+            <input type="hidden" id="team8" data-mascot="Nets" data-city="Brooklyn" 
+                   data-wins="38" data-losses="44" data-confwins="24" data-conflosses="28">
+      
+            <!-- WEST TOP 8 -->
+            <input type="hidden" id="team9" data-mascot="Warriors" data-city="Golden State" 
+                   data-wins="67" data-losses="15" data-confwins="42" data-conflosses="10">
+            <input type="hidden" id="team10" data-mascot="Rockets" data-city="Houston" 
+                   data-wins="56" data-losses="26" data-confwins="33" data-conflosses="19">
+            <input type="hidden" id="team11" data-mascot="Clippers" data-city="Los Angeles" 
+                   data-wins="56" data-losses="26" data-confwins="37" data-conflosses="15">
+            <input type="hidden" id="team12" data-mascot="Trailblazers" data-city="Portland" 
+                   data-wins="51" data-losses="31" data-confwins="31" data-conflosses="21">
+            <input type="hidden" id="team13" data-mascot="Grizzlies" data-city="Memphis" 
+                   data-wins="55" data-losses="27" data-confwins="35" data-conflosses="17">
+            <input type="hidden" id="team14" data-mascot="Spurs" data-city="San Antonio" 
+                   data-wins="55" data-losses="27" data-confwins="32" data-conflosses="20">
+            <input type="hidden" id="team15" data-mascot="Mavericks" data-city="Dallas" 
+                   data-wins="50" data-losses="32" data-confwins="29" data-conflosses="23">
+            <input type="hidden" id="team16" data-mascot="Pelicans" data-city="New Orleans" 
+                   data-wins="45" data-losses="37" data-confwins="29" data-conflosses="23">
+        </form>
+    
+        <form id="bracketdata">
+            <!-- Previously this was generated through asynchronous http calls to each
+                 document in the brackets/ folder however to cancel the need for the user to wait
+                 for the information to load I've just pasted them in here. It will be better
+                 programatically when html has an include command (I wasn't using PHP deliberately
+                 as a challenge) -->
+            <input type="hidden" class="bracketEncoded" data-owner="JizzOnTheWiz" id="bracket-JizzOnTheWiz"
+                   data-information="1-1-9-1-2-2-15-3-3-3-14-2-4-2-13-3-1-2-9-2-2-3-14-2-2-2-9-3-9-1-">
+            <input type="hidden" class="bracketEncoded" data-owner="MatthewNicol" id="bracket-MatthewNicol"
+                   data-information="1-0-9-1-2-2-10-3-3-0-14-2-4-1-13-3-1-3-9-0-2-3-14-2-2-3-9-1-9-0-">
+            <input type="hidden" class="bracketEncoded" data-owner="joey" id="bracket-joey"
+                   data-information="1-0-9-0-2-1-10-2-3-0-14-3-5-2-13-2-1-1-9-1-3-3-14-2-1-2-9-2-9-2-">
+            <input type="hidden" class="bracketEncoded" data-owner="BSam" id="bracket-BSam"
+                   data-information="1-0-9-0-2-0-10-0-3-0-11-0-4-0-13-0-1-0-9-0-2-0-11-0-1-0-9-0-9-0-">
+            <input type="hidden" class="bracketEncoded" data-owner="BondFiction" id="bracket-BondFiction"
+                   data-information="1-0-9-1-2-1-15-2-3-2-14-3-4-1-13-2-1-2-9-2-2-3-14-3-1-2-9-3-9-3-">
+            <input type="hidden" class="bracketEncoded" data-owner="JosephGoebbels" id="bracket-JosephGoebbels"
+                   data-information="1-1-9-0-2-1-10-2-3-2-11-3-4-3-13-3-1-2-9-1-3-3-11-3-1-2-9-2-1-2-">
+            <input type="hidden" class="bracketEncoded" data-owner="Chronicles" id="bracket-Chronicles"
+                   data-information="1-0-9-2-2-2-10-3-3-1-14-1-4-3-13-2-1-1-9-1-2-2-14-2-1-2-14-1-14-2-">
+            <input type="hidden" class="bracketEncoded" data-owner="Paulsummerton" id="bracket-Paulsummerton"
+                   data-information="1-1-9-1-2-0-10-2-3-1-14-3-4-2-12-3-1-2-9-2-2-3-14-3-2-2-9-3-9-3-">
+            <input type="hidden" class="bracketEncoded" data-owner="DeJayse" id="bracket-DeJayse"
+                   data-information="1-0-9-0-2-1-10-3-3-1-11-3-5-2-13-3-1-2-9-3-3-3-10-3-3-3-9-3-9-2-">
+            <input type="hidden" class="bracketEncoded" data-owner="Elenna" id="bracket-Elenna"
+                   data-information="1-1-9-1-2-0-10-3-3-3-11-3-5-3-13-2-1-0-9-2-2-2-11-3-2-3-9-2-9-3-">
+            <input type="hidden" class="bracketEncoded" data-owner="Eraser" id="bracket-Eraser"
+                   data-information="1-0-9-0-2-1-10-2-3-3-14-2-4-3-13-3-1-1-9-2-2-1-14-2-1-1-9-2-9-2-">
+            <input type="hidden" class="bracketEncoded" data-owner="Splash" id="bracket-Splash"
+                   data-information="1-1-9-0-2-1-10-2-3-0-14-2-5-3-12-3-1-3-9-2-2-3-10-3-2-2-9-2-9-3-">
+            <input type="hidden" class="bracketEncoded" data-owner="Zaccas-pristine-bracket" id="bracket-Zaccas-pristine-bracket"
+                   data-information="1-0-9-1-2-1-10-2-3-2-14-3-4-3-13-2-1-2-9-2-2-3-14-2-2-2-14-3-2-2-">
+            <input type="hidden" class="bracketEncoded" data-owner="Skeletonic" id="bracket-Skeletonic"
+                   data-information="1-0-9-2-2-2-10-3-3-1-11-2-5-1-13-1-1-0-9-1-2-2-11-1-1-1-9-1-1-2-">
+        </form>
+    
+    <div class="teamdata">
+    
+    </div>
+    
+    <div id="makebracket" class="maincontainer">
+      <div class="round" id="round1">
+      <h2 class="roundheader">Round 1</h2>
+          
+        <div class="eastConference">          
+          <h3 class="conference">Eastern Conference</h3>
+          <div class="matchup" id="match1" data-left="1" data-right="8" data-leftmatch="0" data-rightmatch="0" 
+               data-winner="0" data-loserwins="0" data-actualwins="1" data-actualloserwins="2"></div>
+          <div class="matchup" id="match3" data-left="2" data-right="7" data-leftmatch="0" data-rightmatch="0" 
+               data-winner="0" data-loserwins="0" data-actualwins="2" data-actualloserwins="0"></div>
+          <div class="matchup" id="match5" data-left="3" data-right="6" data-leftmatch="0" data-rightmatch="0" 
+               data-winner="0" data-loserwins="0" data-actualwins="3" data-actualloserwins="2"></div>
+          <div class="matchup" id="match7" data-left="4" data-right="5" data-leftmatch="0" data-rightmatch="0" 
+               data-winner="0" data-loserwins="0" data-actualwins="5" data-actualloserwins="0"></div>
+        </div>
+          
+        <div class="westConference">
+          <h3 class="conference">Western Conference</h3>
+          <div class="matchup" id="match2"  data-left="9" data-right="16" data-leftmatch="0" data-rightmatch="0" 
+               data-winner="0" data-loserwins="0" data-actualwins="9" data-actualloserwins="0"></div>
+          <div class="matchup" id="match4" data-left="10" data-right="15" data-leftmatch="0" data-rightmatch="0" 
+               data-winner="0" data-loserwins="0" data-actualwins="10" data-actualloserwins="1"></div>
+          <div class="matchup" id="match6" data-left="11" data-right="14" data-leftmatch="0" data-rightmatch="0" 
+               data-winner="0" data-loserwins="0" data-actualwins="11" data-actualloserwins="3"></div>
+          <div class="matchup" id="match8" data-left="12" data-right="13" data-leftmatch="0" data-rightmatch="0" 
+               data-winner="0" data-loserwins="0" data-actualwins="13" data-actualloserwins="1"></div>
+        </div>
+      </div>
+        
+      <div class="round" id="round2">
+        <h2 class="roundheader">Round 2</h2>
+        
+          <div class="eastConference">
+          <h3 class="conference">Eastern Conference</h3>
+	  <div class="matchup" id="match9" data-left="0" data-right="0" data-leftmatch="1" data-rightmatch="7" 
+           data-winner="0" data-loserwins="0" data-actualwins="1" data-actualloserwins="2"></div>
+	  <div class="matchup" id="match11" data-left="0" data-right="0" data-leftmatch="3" data-rightmatch="5" 
+           data-winner="0" data-loserwins="0" data-actualwins="2" data-actualloserwins="2"></div>
+	</div>
+          
+	<div class="westConference">
+	  <h3 class="conference">Western Conference</h3>
+	  <div class="matchup" id="match10" data-left="0" data-right="0" data-leftmatch="2" data-rightmatch="8" 
+           data-winner="0" data-loserwins="0" data-actualwins="9" data-actualloserwins="2"></div>
+	  <div class="matchup" id="match12" data-left="0" data-right="0" data-leftmatch="4" data-rightmatch="6" 
+           data-winner="0" data-loserwins="0" data-actualwins="10" data-actualloserwins="3"></div>
+	</div>
+          
+      </div>
+      <div class="round3">
+        <h2 class="roundheader">Round 3</h2>
+          
+        <div class="eastConference">
+          <h3 class="conference">Eastern Conference Final</h3>
+          <div class="matchup" id="match13" data-left="0" data-right="0" data-leftmatch="9" data-rightmatch="11" 
+               data-winner="0" data-loserwins="0" data-actualwins="2" data-actualloserwins="0"></div>
+        </div>
+        <div class="westConference">
+          <h3 class="conference">Western Conference Final</h3>
+          <div class="matchup" id="match14" data-left="0" data-right="0" data-leftmatch="10" data-rightmatch="12" 
+               data-winner="0" data-loserwins="0" data-actualwins="9" data-actualloserwins="1"></div>
+        </div>
+      </div>
+      <div class="round4">
+        <h2 class="roundheader">Round 4</h2>
+        <div class="noConference">
+          <h3 class="conference">Championship Final</h3>
+          <div class="matchup" id="match15" data-left="0" data-right="0" data-leftmatch="13" data-rightmatch="14" 
+               data-winner="0" data-loserwins="0" data-actualwins="0" data-actualloserwins="-1"></div>
+        </div>
+        <div class="noConference">
+          <h3 class="conference">Details</h3>
+              <div class="teamContainer" class="leftTeam" id="championship" data-match="15" data-winner="0"
+                    data-actualwins="0" data-actualloserwins="-1"></div>              
+              <input class="subbrack" type="text" id="playername" placeholder="Name" value="">
+              <input class="subbrack" type="submit" id="submitbracket" value="Submit my Bracket!">
+                  
+        </div>
+      </div>
+    </div>
+    
+    <div id="allBrackets" class="maincontainer">
+    </div>
+      
+    <div id="seeBracket" class="maincontainer">
+    
+    </div>
+    
+    <div id="statistics" class="maincontainer">
+      <div id="displayBracket" class="subcontainer"></div>
+      <div id="userList" class="subcontainer"></div>
+      </div>
+    </div>
+    
+    <div id="groups" class="maincontainer">
+    </div>
+    <div id="footer">
+        <p class="disclaimer">Website created and designed by Matthew Nicol, with no afilliation to the NBA.</p>
+    
+        <p class="disclaimer">A number of graphics, and CSS styles were derived from other sources because the
+                              author was too lazy to make his own.</p>
+
+        <ul>
+        <li><a href="http://www.iconarchive.com/show/button-ui-requests-13-icons-by-blackvariant/NBA-icon.html">Page icon</a></li>
+        <li><a href="http://3.7designs.co/blog/2008/06/10-examples-of-beautiful-css-typography-and-how-they-did-it/">Bracket Selection Fonts</a></li>
+        <li><a href="http://3.7designs.co/blog/2008/06/10-examples-of-beautiful-css-typography-and-how-they-did-it/">Bracket Selection Fonts</a></li>
+        <li><a href="http://www.marcofolio.net/css/8_different_ways_to_beautifully_style_your_lists.html">Stylized Ordered Lists</a></li>
+        </ul>
+    </div>
+  </body>
+</html>
